@@ -54,4 +54,15 @@ class UserAgent(object):
         return Detector( name )
 
 
-agent = UserAgent()
+class PythonicWrapper(object):
+    def __init__(self, agent):
+        self.agent = agent
+        
+    def __getattr__(self, name):
+        split = name.split('_')
+        name = ''.join( [i[0].upper()+i[1:] for i in split[1:]] )
+        return getattr(self.agent, split[0]+name)
+
+
+mobileesp_agent = UserAgent()        
+python_agent = PythonicWrapper(mobileesp_agent)

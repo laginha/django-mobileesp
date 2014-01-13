@@ -114,14 +114,14 @@ TEMPLATE_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
 )
 
-from django_mobileesp.detector import agent
+from django_mobileesp.detector import python_agent as agent
 
 DETECT_USER_AGENTS = {
-    'is_mobile': (agent.detectTierTablet & agent.detectTierIphone & agent.detectMobileQuick),
-    'is_browser':       agent.detectBrowser,
-    'is_android':       agent.detectAndroid,
-    'is_ios':           agent.detectIos,
-    'is_windows_phone': agent.detectWindowsPhone,
+    'is_mobile': (agent.detect_tier_tablet & agent.detect_tier_iphone & agent.detect_mobile_quick),
+    'is_browser':       agent.detect_browser,
+    'is_android':       agent.detect_android,
+    'is_ios':           agent.detect_ios,
+    'is_windows_phone': agent.detect_windows_phone,
 }
 
 INSTALLED_APPS = (

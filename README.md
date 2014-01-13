@@ -19,7 +19,7 @@ MIDDLEWARE_CLASSES = (
     'django_mobileesp.middleware.UserAgentDetectionMiddleware'
 )
 
-from django_mobileesp.detector import agent
+from django_mobileesp.detector import mobileesp_agent as agent
 
 DETECT_USER_AGENTS = {
     'is_android': agent.detectAndroid,
@@ -38,6 +38,20 @@ Adapt the `DETECT_USER_AGENTS` to your needs:
     - Can be combined with `&`(AND) and `|`(OR) operands. 
     - Read the [mobileesp docs](http://blog.mobileesp.com/?page_id=53) to check all the available methods.
 
+If you prefer more pythonic methods, you can user a wrapper agent as follows:
+
+```python
+from django_mobileesp.detector import python_agent as agent
+
+DETECT_USER_AGENTS = {
+    'is_android': agent.detect_android,
+    'is_ios': agent.detect_ios,
+    'is_windows_phone': agent.detect_windows_phone,
+    'is_mobile': agent.detect_tier_tablet & \
+                 agent.detect_tier_iphone & \
+                 agent.detect_mobile_quick,
+}
+```
 
 Finally access the defined attributes in your views:
 
