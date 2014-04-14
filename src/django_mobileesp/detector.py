@@ -1,11 +1,5 @@
+from .utils import is_browser_agent, is_server_agent, get_user_agent_info
 import mdetect
-
-def is_browser(request):
-    agent = request.META.get('HTTP_USER_AGENT') or ''
-    return agent.startswith('Mozilla/')    
-
-def is_server(request):
-    return not is_browser( request )
 
 
 class Detector(object):
@@ -28,16 +22,11 @@ class Detector(object):
         return "(%s %s %s)" %(self.first, self.op, self.other)
         
     def mobileesp(self, request):
-        
-        def get_agent():
-            user_agent  = request.META.get("HTTP_USER_AGENT")
-            http_accept = request.META.get("HTTP_ACCEPT")
-            return mdetect.UAgentInfo(userAgent=user_agent, httpAccept=http_accept)
             
         def get_result(el):
             return getattr(agent, el)() if isinstance(el, str) else el(request)
               
-        agent = get_agent()
+        agent = get_user_agent_info( request )
         if self.other:
             if self.op == "or":
                 return get_result( self.first ) or get_result( self.other )
@@ -48,9 +37,9 @@ class Detector(object):
 class UserAgent(object): 
     def __getattr__(self, name):
         if name == 'detectBrowser':
-            return Detector( name, detect=is_browser )
+            return Detector( name, detect=is_browser_agent )
         elif name == 'detectServer':
-            return Detector( name, detect=is_server )
+            return Detector( name, detect=is_server_agent )
         return Detector( name )
 
 
