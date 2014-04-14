@@ -117,7 +117,7 @@ TEMPLATE_DIRS = (
 from django_mobileesp.detector import python_agent as agent
 
 DETECT_USER_AGENTS = {
-    'is_mobile': (agent.detect_tier_tablet & agent.detect_tier_iphone & agent.detect_mobile_quick),
+    'is_mobile': (agent.detect_tier_tablet | agent.detect_tier_iphone | agent.detect_mobile_quick),
     'is_browser':       agent.detect_browser,
     'is_android':       agent.detect_android,
     'is_ios':           agent.detect_ios,

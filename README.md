@@ -25,8 +25,8 @@ DETECT_USER_AGENTS = {
     'is_android': agent.detectAndroid,
     'is_ios': agent.detectIos,
     'is_windows_phone': agent.detectWindowsPhone,
-    'is_mobile': agent.detectTierTablet & \
-                 agent.detectTierIphone & \
+    'is_mobile': agent.detectTierTablet | \
+                 agent.detectTierIphone | \
                  agent.detectMobileQuick,
 }
 ```
@@ -47,8 +47,8 @@ DETECT_USER_AGENTS = {
     'is_android': agent.detect_android,
     'is_ios': agent.detect_ios,
     'is_windows_phone': agent.detect_windows_phone,
-    'is_mobile': agent.detect_tier_tablet & \
-                 agent.detect_tier_iphone & \
+    'is_mobile': agent.detect_tier_tablet | \
+                 agent.detect_tier_iphone | \
                  agent.detect_mobile_quick,
 }
 ```
