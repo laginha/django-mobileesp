@@ -22,7 +22,7 @@ class Detector(object):
         return "(%s %s %s)" %(self.first, self.op, self.other)
         
     def mobileesp(self, request):
-            
+        
         def get_result(el):
             return getattr(agent, el)() if isinstance(el, str) else el(request)
               
