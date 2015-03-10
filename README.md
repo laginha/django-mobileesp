@@ -7,7 +7,8 @@ This is an alternative to [django-user_agents](https://github.com/selwin/django-
 
 ## Install
 
-    pip install git+https://github.com/laginha/django-mobileesp/
+    pip install django_mobileesp
+
 
 ## Usage
 
@@ -38,6 +39,7 @@ Adapt the `DETECT_USER_AGENTS` to your needs:
     - Can be combined with `&`(AND) and `|`(OR) operands. 
     - Read the [mobileesp docs](http://blog.mobileesp.com/?page_id=53) to check all the available methods.
 
+
 If you prefer more pythonic methods, you can user a wrapper agent as follows:
 
 ```python
@@ -52,6 +54,7 @@ DETECT_USER_AGENTS = {
                  agent.detect_mobile_quick,
 }
 ```
+
 
 Finally access the defined attributes in your views:
 

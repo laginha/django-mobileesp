@@ -13,7 +13,6 @@ class UserAgentDetectionMiddleware(object):
     Middleware to detect request's user agent
     """
     def process_request(self, request):
-        
         for each in DETECT_USER_AGENTS:
             setattr( request, each, lazy_detection(request, each) )
 
