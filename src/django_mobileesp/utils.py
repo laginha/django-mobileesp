@@ -1,4 +1,4 @@
-import mdetect
+from django_mobileesp import mdetect
 
 
 def get_user_agent_info(request):
